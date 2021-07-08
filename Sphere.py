@@ -1,5 +1,6 @@
 import numpy as np
 from Hittable import Hittable
+from utils import normalize
 
 
 class Sphere(Hittable):
@@ -8,9 +9,9 @@ class Sphere(Hittable):
         self.radius = radius
 
     def normal(self, hit_point):
-        return hit_point - self.centre
+        return normalize(hit_point - self.centre)
 
-    def compute_hit_point(self, ray):
+    def hit(self, ray):
         oc = ray["origin"] - self.centre
         a = np.dot(ray["direction"], ray["direction"])
         half_b = np.dot(oc, ray["direction"])

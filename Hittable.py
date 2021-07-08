@@ -8,5 +8,5 @@ class Hittable(ABC):
         pass
 
     @abstractmethod
-    def compute_hit_point(self, ray):
+    def hit(self, ray):
         pass
