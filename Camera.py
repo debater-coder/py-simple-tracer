@@ -4,6 +4,18 @@ from alive_progress import alive_bar
 import matplotlib.pyplot as plt
 
 
+def hit_sphere(centre, radius, ray):
+    oc = ray["origin"] - centre
+    a = np.dot(ray["direction"], ray["direction"])
+    half_b = np.dot(oc, ray["direction"])
+    c = np.dot(oc, oc) - radius ** 2
+    discriminant = half_b ** 2 - a * c
+    if discriminant < 0:
+        return -1
+    else:
+        return (-half_b - np.sqrt(discriminant)) / a
+
+
 class Camera:
     def __init__(self, resolution, image_plane, position, scene):
         self.width, self.height = resolution
